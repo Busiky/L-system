@@ -12,9 +12,10 @@ class Fract(QWidget):
         self.initUI()
 
     def initUI(self):
-        self.setGeometry(200, 200, 1800, 800)
+        self.WIDTH, self.HEIGHT = 1800, 800
+        self.setGeometry(100, 100, self.WIDTH, self.HEIGHT)
         self.setWindowTitle('L-system')
-        self.x, self.y = 0, 400
+        self.x, self.y = 0, self.HEIGHT // 2
         self.line = 40
         self.angle = 0
 
@@ -30,7 +31,7 @@ class Fract(QWidget):
             temp = ''
             for j in range(n):
                 self.line = int(self.line / 2) if int(self.line / 2) > 0 else 1
-                self.y = self.y + 50 if self.y + 50 <= 750 else 750
+                self.y = self.y + 50 if self.y + 50 <= self.HEIGHT - 50 else self.HEIGHT - 50
                 for i in range(len(self.rules)):
                     if self.rules[i] == 'F':
                         temp += self.rule
